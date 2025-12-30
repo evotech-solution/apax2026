@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="APAX Software Services - Web Development, ERP Software, Business Management, and more">
+  <title>Services - APAX Software Company</title><!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700;800&amp;display=swap" rel="stylesheet"><!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script><!-- Element SDK -->
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-green: #10B981;
+            --secondary-blue: #3B82F6;
+            --accent-purple: #8B5CF6;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Animated Background Blobs */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+            animation: blobFloat 20s ease-in-out infinite;
+        }
+        
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-blue));
+            top: -200px;
+            left: -200px;
+            animation-delay: 0s;
+        }
+        
+        .blob-2 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, var(--secondary-blue), var(--accent-purple));
+            top: 50%;
+            right: -150px;
+            animation-delay: 5s;
+        }
+        
+        .blob-3 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--primary-green));
+            bottom: -100px;
+            left: 30%;
+            animation-delay: 10s;
+        }
+        
+        @keyframes blobFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, -50px) scale(1.1); }
+            50% { transform: translate(-30px, 30px) scale(0.9); }
+            75% { transform: translate(30px, 50px) scale(1.05); }
+        }
+        
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.95), rgba(59, 130, 246, 0.95));
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+            animation: blobPulse 3s ease-in-out infinite;
+        }
+        
+        .scroll-to-top.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .scroll-to-top:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(16, 185, 129, 0.6);
+        }
+        
+        @keyframes blobPulse {
+            0%, 100% { border-radius: 50% 40% 50% 40%; }
+            25% { border-radius: 40% 50% 40% 50%; }
+            50% { border-radius: 50% 40% 50% 40%; }
+            75% { border-radius: 40% 50% 40% 50%; }
+        }
+        
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            animation: blobPulse 3s ease-in-out infinite;
+            animation-delay: 1.5s;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.6);
+        }
+        
+        /* Service Detail Card */
+        .service-detail-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 2rem;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            margin-bottom: 3rem;
+        }
+        
+        .service-detail-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.15), transparent);
+            transition: left 0.8s ease;
+        }
+        
+        .service-detail-card:hover::before {
+            left: 100%;
+        }
+        
+        .service-detail-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(16, 185, 129, 0.3);
+            border-color: rgba(16, 185, 129, 0.5);
+        }
+        
+        .service-icon-large {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            position: relative;
+            animation: iconFloat 4s ease-in-out infinite;
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4);
+        }
+        
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .service-detail-card:hover .service-icon-large {
+            animation: iconRotateBounce 0.8s ease;
+        }
+        
+        @keyframes iconRotateBounce {
+            0% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(90deg) scale(1.3); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            75% { transform: rotate(270deg) scale(1.3); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        
+        .service-icon-large i {
+            font-size: 3.5rem;
+            color: white;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: start;
+            padding: 1rem;
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-item:hover {
+            background: rgba(16, 185, 129, 0.05);
+            transform: translateX(10px);
+        }
+        
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-right: 1rem;
+        }
+        
+        .feature-icon i {
+            color: white;
+            font-size: 1.125rem;
+        }
+        
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        /* CTA Button */
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-blue));
+            color: white;
+            padding: 1.25rem 3rem;
+            border-radius: 3rem;
+            font-weight: 700;
+            font-size: 1.125rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(16, 185, 129, 0.5);
+        }
+        
+        .cta-button span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Process Steps */
+        .process-step {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 2rem;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+        }
+        
+        .process-step:hover {
+            transform: translateY(-10px);
+            border-color: rgba(16, 185, 129, 0.5);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.3);
+        }
+        
+        .process-number {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full"><!-- Navbar -->
+  <nav class="navbar" id="navbar">
+   <div class="w-full px-6 py-4">
+    <div class="flex items-center justify-between max-w-7xl mx-auto">
+     <div class="flex items-center space-x-3">
+      <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center"><span class="font-bold text-xl" style="background: linear-gradient(135deg, #10B981, #3B82F6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">A</span>
+      </div><span class="text-white text-2xl font-bold" id="nav-company-name">APAX Software</span>
+     </div>
+     <div class="hidden md:flex items-center space-x-8"><a href="index.html" class="text-white hover:text-yellow-300 transition-colors duration-300 font-medium">Home</a> <a href="about.html" class="text-white hover:text-yellow-300 transition-colors duration-300 font-medium">About</a> <a href="services.html" class="text-white hover:text-yellow-300 transition-colors duration-300 font-medium">Services</a> <a href="projects.html" class="text-white hover:text-yellow-300 transition-colors duration-300 font-medium">Projects</a> <a href="contact.html" class="text-white hover:text-yellow-300 transition-colors duration-300 font-medium">Contact</a> <a href="contact.html"><button class="bg-white text-green-600 px-6 py-2 rounded-full transition-all duration-300 font-semibold hover:shadow-lg">Get Started</button></a>
+     </div><button class="md:hidden text-white text-2xl" id="mobile-menu-btn" aria-label="Toggle menu"> <i class="fas fa-bars"></i> </button>
+    </div>
+   </div><!-- Mobile Menu -->
+   <div class="mobile-menu fixed top-0 right-0 w-full h-full bg-gradient-to-br from-green-500 to-blue-500 md:hidden z-50" id="mobile-menu">
+    <div class="flex flex-col h-full">
+     <div class="flex justify-between items-center p-6 border-b border-white border-opacity-20"><span class="text-white text-xl font-bold">Menu</span> <button class="text-white text-2xl" id="mobile-menu-close" aria-label="Close menu"> <i class="fas fa-times"></i> </button>
+     </div>
+     <div class="flex flex-col space-y-6 p-6"><a href="index.html" class="text-white hover:text-yellow-300 text-lg font-medium">Home</a> <a href="about.html" class="text-white hover:text-yellow-300 text-lg font-medium">About</a> <a href="services.html" class="text-white hover:text-yellow-300 text-lg font-medium">Services</a> <a href="projects.html" class="text-white hover:text-yellow-300 text-lg font-medium">Projects</a> <a href="contact.html" class="text-white hover:text-yellow-300 text-lg font-medium">Contact</a>
+     </div>
+    </div>
+   </div>
+  </nav><!-- Hero Section -->
+  <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden" style="background: linear-gradient(135deg, #10B981 0%, #3B82F6 100%);">
+   <div class="blob blob-1"></div>
+   <div class="blob blob-2"></div>
+   <div class="w-full px-6 relative z-10" style="padding-top: 120px; padding-bottom: 60px;">
+    <div class="max-w-7xl mx-auto text-center">
+     <h1 class="text-6xl md:text-7xl font-extrabold mb-6 text-white" id="page-title">Our Services</h1>
+     <p class="text-xl md:text-2xl text-white text-opacity-90 max-w-3xl mx-auto" id="page-subtitle">Comprehensive software solutions tailored to transform your business</p>
+    </div>
+   </div>
+  </section><!-- Services Detail Section -->
+  <section class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #f0fdf4 0%, #dbeafe 100%);">
+   <div class="blob blob-3"></div>
+   <div class="w-full px-6 relative z-10">
+    <div class="max-w-7xl mx-auto"><!-- Web Development -->
+     <div class="service-detail-card">
+      <div class="service-icon-large"><i class="fas fa-code"></i>
+      </div>
+      <h2 class="text-4xl font-bold text-center mb-4" style="background: linear-gradient(135deg, #10B981, #3B82F6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Web Development</h2>
+      <p class="text-xl text-gray-600 text-center mb-8 max-w-3xl mx-auto">Build modern, responsive, and high-performance websites that engage your audience and drive business growth</p>
+      <div class="grid md:grid-cols-2 gap-4">
+       <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-mobile-alt"></i>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-800 mb-1">Responsive Design</h4>
+         <p class="text-gray-600">Websites that work flawlessly on all devices and screen sizes</p>
+        </div>
+       </div>
+       <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-rocket"></i>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-800 mb-1">Fast Performance</h4>
+         <p class="text-gray-600">Optimized loading speeds for better user experience and SEO</p>
+        </div>
+       </div>
+       <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-shield-alt"></i>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-800 mb-1">Secure &amp; Reliable</h4>
+         <p class="text-gray-600">Built with security best practices and reliable hosting</p>
+        </div>
+       </div>
+       <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-search"></i>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-800 mb-1">SEO Optimized</h4>
+         <p class="text-gray-600">Search engine friendly architecture to boost your visibility</p>
+        </div>
+       </div>
+      </div>
+     </div><!-- ERP Software -->
+     <div class="service-detail-card">
+      <div class="service-icon-large"><i class="fas fa-chart-line"></i>
+      </div>
+      <h2 class="text-4xl font-bold text-center mb-4" style="background: linear-gradient(135deg, #10B981, #3B82F6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">ERP Software Solutions</h2>
+      <p class="text-xl text-gray-600 text-center mb-8 max-w-3xl mx-auto">Streamline your entire business operations with our comprehensive Enterprise Resource Planning systems</p>
+      <div class="grid md:grid-cols-2 gap-4">
+       <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-warehouse"></i>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-800 mb-1">Inventory Management</h4>
+         <p class="text-gray-600">Real-time stock tracking and automated reorder management</p>
+        </div>
+       </div>
+       <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-dollar-sign"></i>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-800 mb-1">Financial Management</h4>
+         <p class="text-gray-600">Complete accounting, invoicing, and financial reporting tools</p>
+        </div>
+       </div>
+       <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-users"></i>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-800 mb-1">HR &amp; Payroll</h4>
+         <p class="text-gray-600">Employee management, attendance tracking, and payroll processing</p>
+        </div>
+       </div>
+       <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-chart-bar"></i>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-800 mb-1">Analytics &amp; Reports</h4>
+         <p class="text-gray-600">Powerful insights and customizable reporting dashboards</p>
+        </div>
+       </div>
+      </div>
+     </div><!-- Business Management POS -->
+     <div class="service-detail-card">
+      <div class="service-icon-large"><i class="fas fa-briefcase"></i>
+      </div>
+      <h2 class="text-4xl font-bold text-center mb-4" style="background: linear-gradient(135deg, #10B981, #3B82F6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Business Management POS</h2>
+      <p class="text-xl text-gray-600 text-center mb-8 max-w-3xl mx-auto">Advanced point-of-sale systems integrated with complete business management features</p>
+      <div class="grid md:grid-cols-2 gap-4">
+       <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-cash-register"></i>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-800 mb-1">Smart POS Terminal</h4>
+         <p class="text-gray-600">Fast checkout, multiple payment methods, and receipt printing</p>
+        </div>
+       </div>
+       <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-boxes"></i>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-800 mb-1">Stock Control</h4>
+         <p class="text-gray-600">Real-time inventory updates with low stock alerts</p>
+        </div>
+       </div>
+       <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-user-friends"></i>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-800 mb-1">Customer Management</h4>
+         <p class="text-gray-600">Track customer purchases, loyalty programs, and preferences</p>
+        </div>
+       </div>
+       <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-file-invoice-dollar"></i>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-800 mb-1">Sales Analytics</h4>
+         <p class="text-gray-600">Detailed sales reports and business performance metrics</p>
+        </div>
+       </div>
+      </div>
+     </div><!-- Restaurant Management -->
+     <div class="service-detail-card">
+      <div class="service-icon-large"><i class="fas fa-utensils"></i>
+      </div>
+      <h2 class="text-4xl font-bold text-center mb-4" style="background: linear-gradient(135deg, #10B981, #3B82F6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Restaurant Management System</h2>
+      <p class="text-xl text-gray-600 text-center mb-8 max-w-3xl mx-auto">Complete restaurant software solution from orders to kitchen to billing</p>
+      <div class="grid md:grid-cols-2 gap-4">
+       <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-tablet-alt"></i>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-800 mb-1">Digital Menu &amp; Orders</h4>
+         <p class="text-gray-600">Tablet-based ordering system with real-time order tracking</p>
+        </div>
+       </div>
+       <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-fire"></i>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-800 mb-1">Kitchen Display System</h4>
+         <p class="text-gray-600">Direct order transmission to kitchen with preparation tracking</p>
+        </div>
+       </div>
+       <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-table"></i>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-800 mb-1">Table Management</h4>
+         <p class="text-gray-600">Visual table layout, reservations, and occupancy tracking</p>
+        </div>
+       </div>
+       <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-receipt"></i>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-800 mb-1">Billing &amp; Reports</h4>
+         <p class="text-gray-600">Fast billing, split payments, and daily sales analytics</p>
+        </div>
+       </div>
+      </div>
+     </div><!-- School Management -->
+     <div class="service-detail-card">
+      <div class="service-icon-large"><i class="fas fa-graduation-cap"></i>
+      </div>
+      <h2 class="text-4xl font-bold text-center mb-4" style="background: linear-gradient(135deg, #10B981, #3B82F6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">School Management System</h2>
+      <p class="text-xl text-gray-600 text-center mb-8 max-w-3xl mx-auto">Complete educational institution management for administration, students, and academics</p>
+      <div class="grid md:grid-cols-2 gap-4">
+       <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-user-graduate"></i>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-800 mb-1">Student Management</h4>
+         <p class="text-gray-600">Admissions, profiles, attendance, and academic records</p>
+        </div>
+       </div>
+       <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-chalkboard-teacher"></i>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-800 mb-1">Class &amp; Timetable</h4>
+         <p class="text-gray-600">Automated timetable generation and class scheduling</p>
+        </div>
+       </div>
+       <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-clipboard-list"></i>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-800 mb-1">Exam &amp; Grading</h4>
+         <p class="text-gray-600">Exam management, grading system, and report card generation</p>
+        </div>
+       </div>
+       <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-comments"></i>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-800 mb-1">Parent Portal</h4>
+         <p class="text-gray-600">Parent communication, progress tracking, and notifications</p>
+        </div>
+       </div>
+      </div>
+     </div><!-- Graphic Designing -->
+     <div class="service-detail-card">
+      <div class="service-icon-large"><i class="fas fa-palette"></i>
+      </div>
+      <h2 class="text-4xl font-bold text-center mb-4" style="background: linear-gradient(135deg, #10B981, #3B82F6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Graphic Designing</h2>
+      <p class="text-xl text-gray-600 text-center mb-8 max-w-3xl mx-auto">Creative visual designs that bring your brand identity to life and captivate your audience</p>
+      <div class="grid md:grid-cols-2 gap-4">
+       <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-id-badge"></i>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-800 mb-1">Brand Identity</h4>
+         <p class="text-gray-600">Logos, color schemes, and complete brand guidelines</p>
+        </div>
+       </div>
+       <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-image"></i>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-800 mb-1">Marketing Materials</h4>
+         <p class="text-gray-600">Brochures, flyers, business cards, and promotional designs</p>
+        </div>
+       </div>
+       <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-desktop"></i>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-800 mb-1">Digital Graphics</h4>
+         <p class="text-gray-600">Social media graphics, banners, and web assets</p>
+        </div>
+       </div>
+       <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-paint-brush"></i>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-800 mb-1">Custom Illustrations</h4>
+         <p class="text-gray-600">Unique illustrations and infographics for your content</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Process Section -->
+  <section class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);">
+   <div class="w-full px-6 relative z-10">
+    <div class="max-w-7xl mx-auto">
+     <div class="text-center mb-16">
+      <h2 class="text-5xl md:text-6xl font-bold mb-4" style="background: linear-gradient(135deg, #10B981, #3B82F6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Our Process</h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">A proven methodology to deliver exceptional results</p>
+     </div>
+     <div class="grid md:grid-cols-4 gap-8">
+      <div class="process-step">
+       <div class="process-number">
+        1
+       </div>
+       <h3 class="text-2xl font-bold text-gray-800 mb-3">Discovery</h3>
+       <p class="text-gray-600">We understand your business needs, goals, and challenges</p>
+      </div>
+      <div class="process-step">
+       <div class="process-number">
+        2
+       </div>
+       <h3 class="text-2xl font-bold text-gray-800 mb-3">Planning</h3>
+       <p class="text-gray-600">Create detailed project roadmap and technical architecture</p>
+      </div>
+      <div class="process-step">
+       <div class="process-number">
+        3
+       </div>
+       <h3 class="text-2xl font-bold text-gray-800 mb-3">Development</h3>
+       <p class="text-gray-600">Build your solution with agile methodology and regular updates</p>
+      </div>
+      <div class="process-step">
+       <div class="process-number">
+        4
+       </div>
+       <h3 class="text-2xl font-bold text-gray-800 mb-3">Launch</h3>
+       <p class="text-gray-600">Deploy, test, and provide ongoing support and maintenance</p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- CTA Section -->
+  <section class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #10B981 0%, #3B82F6 100%);">
+   <div class="w-full px-6 relative z-10">
+    <div class="max-w-4xl mx-auto text-center">
+     <h2 class="text-5xl md:text-6xl font-bold mb-6 text-white">Ready to Get Started?</h2>
+     <p class="text-xl text-white text-opacity-90 mb-12">Let's discuss your project and find the perfect solution for your business</p><a href="contact.html" class="cta-button"><span>Contact Us Today</span></a>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer class="bg-white py-12 border-t border-gray-200">
+   <div class="w-full px-6">
+    <div class="max-w-7xl mx-auto">
+     <div class="grid md:grid-cols-4 gap-8">
+      <div>
+       <div class="flex items-center space-x-3 mb-4">
+        <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #10B981, #3B82F6);"><span class="text-white font-bold text-xl">A</span>
+        </div><span class="text-xl font-bold text-gray-800" id="footer-company-name">APAX Software</span>
+       </div>
+       <p class="text-gray-600">Transforming ideas into digital reality</p>
+      </div>
+      <div>
+       <h4 class="text-lg font-bold text-gray-800 mb-4">Quick Links</h4>
+       <ul class="space-y-2">
+        <li><a href="index.html" class="text-gray-600 hover:text-green-500 transition-colors">Home</a></li>
+        <li><a href="about.html" class="text-gray-600 hover:text-green-500 transition-colors">About</a></li>
+        <li><a href="services.html" class="text-gray-600 hover:text-green-500 transition-colors">Services</a></li>
+        <li><a href="projects.html" class="text-gray-600 hover:text-green-500 transition-colors">Projects</a></li>
+       </ul>
+      </div>
+      <div>
+       <h4 class="text-lg font-bold text-gray-800 mb-4">Services</h4>
+       <ul class="space-y-2">
+        <li><a href="services.html" class="text-gray-600 hover:text-green-500 transition-colors">Web Development</a></li>
+        <li><a href="services.html" class="text-gray-600 hover:text-green-500 transition-colors">ERP Software</a></li>
+        <li><a href="services.html" class="text-gray-600 hover:text-green-500 transition-colors">Business Management</a></li>
+        <li><a href="services.html" class="text-gray-600 hover:text-green-500 transition-colors">Graphic Designing</a></li>
+       </ul>
+      </div>
+      <div>
+       <h4 class="text-lg font-bold text-gray-800 mb-4">Contact</h4>
+       <ul class="space-y-2">
+        <li class="flex items-center space-x-2"><i class="fas fa-envelope text-green-500"></i> <span class="text-gray-600 text-sm">apaxpos@gmail.com</span></li>
+        <li class="flex items-center space-x-2"><i class="fas fa-phone text-green-500"></i> <span class="text-gray-600 text-sm">0327-7003331</span></li>
+       </ul>
+      </div>
+     </div>
+     <div class="border-t border-gray-200 mt-8 pt-8 text-center">
+      <p class="text-gray-600">© 2024 APAX Software Company. All rights reserved.</p>
+     </div>
+    </div>
+   </div>
+  </footer><!-- Scroll to Top Button -->
+  <div class="scroll-to-top" id="scroll-to-top"><i class="fas fa-arrow-up text-white text-xl"></i>
+  </div><!-- WhatsApp Button --> <a href="https://wa.me/923277003331" target="_blank" rel="noopener noreferrer" class="whatsapp-btn"> <i class="fab fa-whatsapp text-white text-2xl"></i> </a>
+  <script>
+        const defaultConfig = {
+            company_name: "APAX Software",
+            page_title: "Our Services",
+            page_subtitle: "Comprehensive software solutions tailored to transform your business"
+        };
+        
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+        
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+        
+        // Scroll to top button
+        const scrollToTopBtn = document.getElementById('scroll-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Element SDK Config
+        async function onConfigChange(config) {
+            const mergedConfig = { ...defaultConfig, ...config };
+            
+            const updates = [
+                { id: 'nav-company-name', value: mergedConfig.company_name },
+                { id: 'footer-company-name', value: mergedConfig.company_name },
+                { id: 'page-title', value: mergedConfig.page_title },
+                { id: 'page-subtitle', value: mergedConfig.page_subtitle }
+            ];
+            
+            updates.forEach(({ id, value }) => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = value;
+            });
+        }
+        
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig,
+                onConfigChange,
+                mapToCapabilities: (config) => ({
+                    recolorables: [],
+                    borderables: [],
+                    fontEditable: undefined,
+                    fontSizeable: undefined
+                }),
+                mapToEditPanelValues: (config) => new Map([
+                    ["company_name", config.company_name || defaultConfig.company_name],
+                    ["page_title", config.page_title || defaultConfig.page_title],
+                    ["page_subtitle", config.page_subtitle || defaultConfig.page_subtitle]
+                ])
+            });
+        }
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b60be6ce14934e9',t:'MTc2NzA4OTM5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
