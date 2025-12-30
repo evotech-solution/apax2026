@@ -122,25 +122,24 @@
             100% { transform: translateX(-50%); }
         }
         
-        /* Navbar Styles */
+        /* Navbar Styles - Transparent at top, solid on scroll */
         .navbar {
             position: fixed;
-            top: -100px;
+            top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
             background: transparent;
         }
         
-        .navbar.visible {
-            top: 0;
+        .navbar.scrolled {
             background: linear-gradient(135deg, rgba(16, 185, 129, 0.95), rgba(59, 130, 246, 0.95));
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
         
-        /* Scroll to Top Button - Animated Blob */
+        /* Scroll to Top Button */
         .scroll-to-top {
             position: fixed;
             bottom: 30px;
@@ -178,7 +177,7 @@
             75% { border-radius: 40% 50% 40% 50%; }
         }
         
-        /* WhatsApp Button - Animated Blob */
+        /* WhatsApp Button */
         .whatsapp-btn {
             position: fixed;
             bottom: 30px;
@@ -204,13 +203,15 @@
         
         /* Service Cards with Advanced Animation */
         .service-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             border-radius: 2rem;
             padding: 2.5rem;
             position: relative;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
         }
         
         .service-card::before {
@@ -220,8 +221,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
-            transition: left 0.7s ease;
+            background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.15), transparent);
+            transition: left 0.8s ease;
         }
         
         .service-card:hover::before {
@@ -229,8 +230,9 @@
         }
         
         .service-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(16, 185, 129, 0.3);
+            transform: translateY(-20px) scale(1.03);
+            box-shadow: 0 30px 60px rgba(16, 185, 129, 0.4);
+            border-color: rgba(16, 185, 129, 0.5);
         }
         
         .service-icon-wrapper {
@@ -244,20 +246,23 @@
             margin-bottom: 1.5rem;
             position: relative;
             animation: iconFloat 4s ease-in-out infinite;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
         }
         
         @keyframes iconFloat {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-15px); }
         }
         
         .service-card:hover .service-icon-wrapper {
-            animation: iconRotate 0.8s ease;
+            animation: iconRotateBounce 0.8s ease;
         }
         
-        @keyframes iconRotate {
+        @keyframes iconRotateBounce {
             0% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(180deg) scale(1.2); }
+            25% { transform: rotate(90deg) scale(1.3); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            75% { transform: rotate(270deg) scale(1.3); }
             100% { transform: rotate(360deg) scale(1); }
         }
         
@@ -266,20 +271,19 @@
             color: white;
         }
         
-        /* Testimonial Carousel */
-        .testimonial-carousel {
+        /* Testimonial - Transparent Background */
+        .testimonial-transparent {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 2rem;
+            padding: 3rem;
             position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-        
-        .testimonial-slide {
+            border: 1px solid rgba(255, 255, 255, 0.2);
             display: none;
             animation: fadeSlide 0.8s ease;
         }
         
-        .testimonial-slide.active {
+        .testimonial-transparent.active {
             display: block;
         }
         
@@ -288,61 +292,30 @@
             100% { opacity: 1; transform: translateX(0); }
         }
         
-        .testimonial-card {
-            background: white;
-            border-radius: 2rem;
-            padding: 3rem;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-        
-        .testimonial-card::before {
+        .testimonial-transparent::before {
             content: '"';
             position: absolute;
             top: 20px;
             left: 30px;
             font-size: 6rem;
-            color: rgba(16, 185, 129, 0.1);
+            color: rgba(255, 255, 255, 0.2);
             font-family: Georgia, serif;
         }
         
-        /* Team Carousel */
-        .team-carousel {
-            position: relative;
-            overflow: hidden;
-            padding: 2rem 0;
-        }
-        
-        .team-track {
-            display: flex;
-            gap: 2rem;
-            transition: transform 0.5s ease;
-        }
-        
-        .team-member {
-            min-width: calc(33.333% - 1.5rem);
-            background: white;
+        /* Team Member - Transparent Background */
+        .team-member-transparent {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             border-radius: 2rem;
             padding: 2rem;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
-        @media (max-width: 1024px) {
-            .team-member {
-                min-width: calc(50% - 1rem);
-            }
-        }
-        
-        @media (max-width: 640px) {
-            .team-member {
-                min-width: 100%;
-            }
-        }
-        
-        .team-member:hover {
+        .team-member-transparent:hover {
             transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
             box-shadow: 0 20px 40px rgba(16, 185, 129, 0.2);
         }
         
@@ -368,7 +341,7 @@
             75% { border-radius: 60% 40% 60% 40% / 70% 30% 50% 60%; }
         }
         
-        .team-member:hover .blob-frame {
+        .team-member-transparent:hover .blob-frame {
             animation: blobMorphFast 2s ease-in-out infinite;
         }
         
@@ -392,31 +365,12 @@
             z-index: 2;
         }
         
-        .carousel-nav {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-        
-        .carousel-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-green), var(--secondary-blue));
+        /* Counter Animation */
+        .counter {
+            font-size: 4rem;
+            font-weight: 800;
             color: white;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
-        }
-        
-        .carousel-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+            line-height: 1;
         }
         
         /* Animated Shapes */
@@ -487,6 +441,15 @@
             position: relative;
             z-index: 1;
         }
+        
+        /* Technology Logo Styles */
+        .tech-logo {
+            transition: all 0.3s ease;
+        }
+        
+        .tech-logo:hover {
+            transform: translateY(-10px) scale(1.1);
+        }
     </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
@@ -548,187 +511,175 @@
        <div class="service-icon-wrapper"><i class="service-icon fas fa-code"></i>
        </div>
        <h3 class="text-2xl font-bold text-gray-800 mb-3">Web Development</h3>
-       <p class="text-gray-600">Modern, responsive websites built with cutting-edge technologies</p>
+       <p class="text-gray-600">Modern, responsive websites built with cutting-edge technologies and best practices</p>
       </div><!-- Service 2 -->
       <div class="service-card">
-       <div class="service-icon-wrapper"><i class="service-icon fas fa-mobile-alt"></i>
+       <div class="service-icon-wrapper"><i class="service-icon fas fa-chart-line"></i>
        </div>
-       <h3 class="text-2xl font-bold text-gray-800 mb-3">Mobile Apps</h3>
-       <p class="text-gray-600">Native and cross-platform applications for iOS and Android</p>
+       <h3 class="text-2xl font-bold text-gray-800 mb-3">ERP Software</h3>
+       <p class="text-gray-600">Complete enterprise resource planning solutions to streamline your business operations</p>
       </div><!-- Service 3 -->
+      <div class="service-card">
+       <div class="service-icon-wrapper"><i class="service-icon fas fa-briefcase"></i>
+       </div>
+       <h3 class="text-2xl font-bold text-gray-800 mb-3">Business Management POS</h3>
+       <p class="text-gray-600">Advanced point-of-sale systems for efficient business and inventory management</p>
+      </div><!-- Service 4 -->
+      <div class="service-card">
+       <div class="service-icon-wrapper"><i class="service-icon fas fa-utensils"></i>
+       </div>
+       <h3 class="text-2xl font-bold text-gray-800 mb-3">Restaurant Management</h3>
+       <p class="text-gray-600">Comprehensive restaurant software for orders, billing, and kitchen management</p>
+      </div><!-- Service 5 -->
+      <div class="service-card">
+       <div class="service-icon-wrapper"><i class="service-icon fas fa-graduation-cap"></i>
+       </div>
+       <h3 class="text-2xl font-bold text-gray-800 mb-3">School Management</h3>
+       <p class="text-gray-600">Complete school management systems for administration, students, and academics</p>
+      </div><!-- Service 6 -->
       <div class="service-card">
        <div class="service-icon-wrapper"><i class="service-icon fas fa-palette"></i>
        </div>
-       <h3 class="text-2xl font-bold text-gray-800 mb-3">UI/UX Design</h3>
-       <p class="text-gray-600">Beautiful interfaces that users love to interact with</p>
-      </div><!-- Service 4 -->
-      <div class="service-card">
-       <div class="service-icon-wrapper"><i class="service-icon fas fa-cloud"></i>
-       </div>
-       <h3 class="text-2xl font-bold text-gray-800 mb-3">Cloud Solutions</h3>
-       <p class="text-gray-600">Scalable cloud infrastructure for your applications</p>
-      </div><!-- Service 5 -->
-      <div class="service-card">
-       <div class="service-icon-wrapper"><i class="service-icon fas fa-shield-alt"></i>
-       </div>
-       <h3 class="text-2xl font-bold text-gray-800 mb-3">Cybersecurity</h3>
-       <p class="text-gray-600">Protect your digital assets with enterprise-grade security</p>
-      </div><!-- Service 6 -->
-      <div class="service-card">
-       <div class="service-icon-wrapper"><i class="service-icon fas fa-robot"></i>
-       </div>
-       <h3 class="text-2xl font-bold text-gray-800 mb-3">AI &amp; ML</h3>
-       <p class="text-gray-600">Intelligent solutions powered by artificial intelligence</p>
+       <h3 class="text-2xl font-bold text-gray-800 mb-3">Graphic Designing</h3>
+       <p class="text-gray-600">Creative visual designs that bring your brand identity to life</p>
       </div>
      </div>
     </div>
    </div>
   </section><!-- Testimonials Section -->
-  <section class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #f0fdf4 0%, #dbeafe 100%);">
-   <div class="blob blob-1" style="top: 50%; left: -100px;"></div>
-   <div class="blob blob-2" style="bottom: 0; right: -100px;"></div>
+  <section class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #10B981 0%, #3B82F6 100%);">
    <div class="w-full px-6 relative z-10">
     <div class="max-w-7xl mx-auto">
      <div class="text-center mb-16">
-      <h2 class="text-5xl md:text-6xl font-bold mb-4" style="background: linear-gradient(135deg, #10B981, #3B82F6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">What Our Clients Say</h2>
-      <p class="text-xl text-gray-600">Real feedback from real clients</p>
+      <h2 class="text-5xl md:text-6xl font-bold mb-4 text-white">What Our Clients Say</h2>
+      <p class="text-xl text-white text-opacity-90">Real feedback from real clients</p>
      </div>
-     <div class="testimonial-carousel"><!-- Testimonial 1 -->
-      <div class="testimonial-slide active">
-       <div class="testimonial-card">
-        <div class="flex items-center mb-6">
-         <div class="w-20 h-20 rounded-full bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center text-white text-2xl font-bold mr-4">
-          JD
-         </div>
-         <div>
-          <h4 class="text-2xl font-bold text-gray-800">John Doe</h4>
-          <p class="text-gray-600">CEO, Tech Innovations</p>
-         </div>
+     <div class="testimonial-carousel max-w-4xl mx-auto"><!-- Testimonial 1 -->
+      <div class="testimonial-transparent active">
+       <div class="flex items-center mb-6">
+        <div class="w-20 h-20 rounded-full bg-gradient-to-br from-white to-gray-200 flex items-center justify-center text-green-600 text-2xl font-bold mr-4">
+         JD
         </div>
-        <p class="text-gray-700 text-lg leading-relaxed mb-4">APAX Software transformed our business with their innovative solutions. Their team's expertise and dedication exceeded our expectations. The project was delivered on time and within budget.</p>
-        <div class="flex text-yellow-400 text-2xl"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
+        <div>
+         <h4 class="text-2xl font-bold text-white">John Doe</h4>
+         <p class="text-white text-opacity-80">CEO, Tech Innovations</p>
         </div>
+       </div>
+       <p class="text-white text-opacity-90 text-lg leading-relaxed mb-4">APAX Software transformed our business with their innovative solutions. Their team's expertise and dedication exceeded our expectations. The project was delivered on time and within budget.</p>
+       <div class="flex text-yellow-300 text-2xl"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
        </div>
       </div><!-- Testimonial 2 -->
-      <div class="testimonial-slide">
-       <div class="testimonial-card">
-        <div class="flex items-center mb-6">
-         <div class="w-20 h-20 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center text-white text-2xl font-bold mr-4">
-          SK
-         </div>
-         <div>
-          <h4 class="text-2xl font-bold text-gray-800">Sarah Khan</h4>
-          <p class="text-gray-600">Founder, Digital Ventures</p>
-         </div>
+      <div class="testimonial-transparent">
+       <div class="flex items-center mb-6">
+        <div class="w-20 h-20 rounded-full bg-gradient-to-br from-white to-gray-200 flex items-center justify-center text-purple-600 text-2xl font-bold mr-4">
+         SK
         </div>
-        <p class="text-gray-700 text-lg leading-relaxed mb-4">Working with APAX was a game-changer for our startup. They understood our vision perfectly and delivered a product that our users absolutely love. Highly recommended!</p>
-        <div class="flex text-yellow-400 text-2xl"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
+        <div>
+         <h4 class="text-2xl font-bold text-white">Sarah Khan</h4>
+         <p class="text-white text-opacity-80">Founder, Digital Ventures</p>
         </div>
        </div>
+       <p class="text-white text-opacity-90 text-lg leading-relaxed mb-4">Working with APAX was a game-changer for our startup. They understood our vision perfectly and delivered a product that our users absolutely love. Highly recommended!</p>
+       <div class="flex text-yellow-300 text-2xl"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
+       </div>
       </div><!-- Testimonial 3 -->
-      <div class="testimonial-slide">
-       <div class="testimonial-card">
-        <div class="flex items-center mb-6">
-         <div class="w-20 h-20 rounded-full bg-gradient-to-br from-blue-400 to-cyan-500 flex items-center justify-center text-white text-2xl font-bold mr-4">
-          MR
-         </div>
-         <div>
-          <h4 class="text-2xl font-bold text-gray-800">Michael Roberts</h4>
-          <p class="text-gray-600">CTO, Global Solutions</p>
-         </div>
+      <div class="testimonial-transparent">
+       <div class="flex items-center mb-6">
+        <div class="w-20 h-20 rounded-full bg-gradient-to-br from-white to-gray-200 flex items-center justify-center text-blue-600 text-2xl font-bold mr-4">
+         MR
         </div>
-        <p class="text-gray-700 text-lg leading-relaxed mb-4">The technical expertise and professionalism of APAX Software is unmatched. They delivered a complex enterprise solution that has significantly improved our operations and efficiency.</p>
-        <div class="flex text-yellow-400 text-2xl"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
+        <div>
+         <h4 class="text-2xl font-bold text-white">Michael Roberts</h4>
+         <p class="text-white text-opacity-80">CTO, Global Solutions</p>
         </div>
+       </div>
+       <p class="text-white text-opacity-90 text-lg leading-relaxed mb-4">The technical expertise and professionalism of APAX Software is unmatched. They delivered a complex enterprise solution that has significantly improved our operations and efficiency.</p>
+       <div class="flex text-yellow-300 text-2xl"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
        </div>
       </div>
      </div>
     </div>
    </div>
   </section><!-- Team Section -->
-  <section class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);">
+  <section class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 50%, #10B981 100%);">
    <div class="w-full px-6 relative z-10">
     <div class="max-w-7xl mx-auto">
      <div class="text-center mb-16">
-      <h2 class="text-5xl md:text-6xl font-bold mb-4" style="background: linear-gradient(135deg, #10B981, #3B82F6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Meet Our Team</h2>
-      <p class="text-xl text-gray-600">Talented professionals driving innovation</p>
+      <h2 class="text-5xl md:text-6xl font-bold mb-4 text-white">Meet Our Team</h2>
+      <p class="text-xl text-white text-opacity-90">Talented professionals driving innovation</p>
      </div>
-     <div class="team-carousel">
-      <div class="team-track" id="team-track"><!-- Team Member 1 -->
-       <div class="team-member">
-        <div class="team-avatar-wrapper">
-         <div class="blob-frame"></div>
-         <div class="team-avatar"><i class="fas fa-user"></i>
-         </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8"><!-- Team Member 1 -->
+      <div class="team-member-transparent">
+       <div class="team-avatar-wrapper">
+        <div class="blob-frame"></div>
+        <div class="team-avatar"><i class="fas fa-user"></i>
         </div>
-        <h3 class="text-2xl font-bold text-gray-800 mb-2">Ahmed Hassan</h3>
-        <p class="text-green-600 font-semibold text-lg">CEO &amp; Founder</p>
-       </div><!-- Team Member 2 -->
-       <div class="team-member">
-        <div class="team-avatar-wrapper">
-         <div class="blob-frame"></div>
-         <div class="team-avatar"><i class="fas fa-user"></i>
-         </div>
-        </div>
-        <h3 class="text-2xl font-bold text-gray-800 mb-2">Sara Khan</h3>
-        <p class="text-green-600 font-semibold text-lg">Lead Developer</p>
-       </div><!-- Team Member 3 -->
-       <div class="team-member">
-        <div class="team-avatar-wrapper">
-         <div class="blob-frame"></div>
-         <div class="team-avatar"><i class="fas fa-user"></i>
-         </div>
-        </div>
-        <h3 class="text-2xl font-bold text-gray-800 mb-2">Ali Raza</h3>
-        <p class="text-green-600 font-semibold text-lg">UI/UX Designer</p>
-       </div><!-- Team Member 4 -->
-       <div class="team-member">
-        <div class="team-avatar-wrapper">
-         <div class="blob-frame"></div>
-         <div class="team-avatar"><i class="fas fa-user"></i>
-         </div>
-        </div>
-        <h3 class="text-2xl font-bold text-gray-800 mb-2">Fatima Malik</h3>
-        <p class="text-green-600 font-semibold text-lg">Project Manager</p>
        </div>
-      </div>
-      <div class="carousel-nav"><button class="carousel-btn" id="team-prev" aria-label="Previous team member"> <i class="fas fa-chevron-left"></i> </button> <button class="carousel-btn" id="team-next" aria-label="Next team member"> <i class="fas fa-chevron-right"></i> </button>
+       <h3 class="text-2xl font-bold text-white mb-2">Ahmed Hassan</h3>
+       <p class="text-white text-opacity-90 font-semibold text-lg">CEO &amp; Founder</p>
+      </div><!-- Team Member 2 -->
+      <div class="team-member-transparent">
+       <div class="team-avatar-wrapper">
+        <div class="blob-frame"></div>
+        <div class="team-avatar"><i class="fas fa-user"></i>
+        </div>
+       </div>
+       <h3 class="text-2xl font-bold text-white mb-2">Sara Khan</h3>
+       <p class="text-white text-opacity-90 font-semibold text-lg">Lead Developer</p>
+      </div><!-- Team Member 3 -->
+      <div class="team-member-transparent">
+       <div class="team-avatar-wrapper">
+        <div class="blob-frame"></div>
+        <div class="team-avatar"><i class="fas fa-user"></i>
+        </div>
+       </div>
+       <h3 class="text-2xl font-bold text-white mb-2">Ali Raza</h3>
+       <p class="text-white text-opacity-90 font-semibold text-lg">UI/UX Designer</p>
+      </div><!-- Team Member 4 -->
+      <div class="team-member-transparent">
+       <div class="team-avatar-wrapper">
+        <div class="blob-frame"></div>
+        <div class="team-avatar"><i class="fas fa-user"></i>
+        </div>
+       </div>
+       <h3 class="text-2xl font-bold text-white mb-2">Fatima Malik</h3>
+       <p class="text-white text-opacity-90 font-semibold text-lg">Project Manager</p>
       </div>
      </div>
     </div>
    </div>
-  </section><!-- Stats Section -->
+  </section><!-- Stats Section with Animated Numbers -->
   <section class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #10B981 0%, #3B82F6 100%);">
    <div class="w-full px-6 relative z-10">
     <div class="max-w-7xl mx-auto">
      <div class="grid md:grid-cols-4 gap-8 text-center">
       <div class="transform hover:scale-110 transition-all duration-300">
-       <div class="text-6xl font-bold text-white mb-2">
-        500+
+       <div class="counter mb-2" data-target="500">
+        0
        </div>
        <div class="text-xl text-white text-opacity-90">
         Projects Completed
        </div>
       </div>
       <div class="transform hover:scale-110 transition-all duration-300">
-       <div class="text-6xl font-bold text-white mb-2">
-        250+
+       <div class="counter mb-2" data-target="250">
+        0
        </div>
        <div class="text-xl text-white text-opacity-90">
         Happy Clients
        </div>
       </div>
       <div class="transform hover:scale-110 transition-all duration-300">
-       <div class="text-6xl font-bold text-white mb-2">
-        10+
+       <div class="counter mb-2" data-target="10">
+        0
        </div>
        <div class="text-xl text-white text-opacity-90">
         Years Experience
        </div>
       </div>
       <div class="transform hover:scale-110 transition-all duration-300">
-       <div class="text-6xl font-bold text-white mb-2">
-        50+
+       <div class="counter mb-2" data-target="50">
+        0
        </div>
        <div class="text-xl text-white text-opacity-90">
         Team Members
@@ -737,7 +688,7 @@
      </div>
     </div>
    </div>
-  </section><!-- Technologies Section -->
+  </section><!-- Technologies Section with Official Logos -->
   <section class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);">
    <div class="w-full px-6 relative z-10">
     <div class="max-w-7xl mx-auto">
@@ -745,217 +696,30 @@
       <h2 class="text-5xl md:text-6xl font-bold mb-4" style="background: linear-gradient(135deg, #10B981, #3B82F6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Technologies We Use</h2>
       <p class="text-xl text-gray-600">Building with the latest and most powerful tools</p>
      </div>
-     <div class="grid grid-cols-3 md:grid-cols-6 gap-8">
-      <div class="flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-       <svg class="w-16 h-16 mb-3" viewbox="0 0 128 128"><path fill="#E44D26" d="M19.037 113.876L9.032 1.661h109.936l-10.016 112.198-45.019 12.48z" /> <path fill="#F16529" d="M64 116.8l36.378-10.086 8.559-95.878H64z" />
+     <div class="grid grid-cols-3 md:grid-cols-6 gap-8"><!-- HTML5 -->
+      <div class="tech-logo flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+       <svg class="w-16 h-16 mb-3" viewbox="0 0 128 128"><path fill="#E44D26" d="M19.037 113.876L9.032 1.661h109.936l-10.016 112.198-45.019 12.48z" /> <path fill="#F16529" d="M64 116.8l36.378-10.086 8.559-95.878H64z" /> <path fill="#EBEBEB" d="M64 52.455H45.788L44.53 38.361H64V24.599H29.489l.33 3.692 3.382 37.927H64zm0 35.743l-.061.017-15.327-4.14-.979-10.975H33.816l1.928 21.609 28.193 7.826.063-.017z" /> <path fill="#FFF" d="M63.952 52.455v13.763h16.947l-1.597 17.849-15.35 4.143v14.319l28.215-7.82.207-2.325 3.234-36.233.335-3.696h-3.708zm0-27.856v13.762h33.244l.276-3.092.628-6.978.329-3.692z" />
        </svg><span class="text-sm font-semibold text-gray-700">HTML5</span>
-      </div>
-      <div class="flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-       <svg class="w-16 h-16 mb-3" viewbox="0 0 128 128"><path fill="#1572B6" d="M18.814 114.123L8.76 1.352h110.48l-10.064 112.754-45.243 12.543-45.119-12.526z" /> <path fill="#33A9DC" d="M64.001 117.062l36.559-10.136 8.601-96.354h-45.16v106.49z" />
+      </div><!-- CSS3 -->
+      <div class="tech-logo flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+       <svg class="w-16 h-16 mb-3" viewbox="0 0 128 128"><path fill="#1572B6" d="M18.814 114.123L8.76 1.352h110.48l-10.064 112.754-45.243 12.543-45.119-12.526z" /> <path fill="#33A9DC" d="M64.001 117.062l36.559-10.136 8.601-96.354h-45.16v106.49z" /> <path fill="#fff" d="M64.001 51.429h18.302l1.264-14.163H64.001V23.435h34.682l-.332 3.711-3.4 38.114h-30.95V51.429z" /> <path fill="#EBEBEB" d="M64.083 87.349l-.061.018-15.403-4.159-.985-11.031H33.752l1.937 21.717 28.331 7.863.063-.018v-14.39z" /> <path fill="#fff" d="M81.127 64.675l-1.666 18.522-15.426 4.164v14.39l28.354-7.858.208-2.337 2.406-26.881H81.127z" /> <path fill="#EBEBEB" d="M64.048 23.435v13.831H30.64l-.277-3.108-.63-7.012-.331-3.711h34.646zm-.047 27.996v13.831H48.792l-.277-3.108-.631-7.012-.33-3.711h16.447z" />
        </svg><span class="text-sm font-semibold text-gray-700">CSS3</span>
-      </div>
-      <div class="flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+      </div><!-- JavaScript -->
+      <div class="tech-logo flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
        <svg class="w-16 h-16 mb-3" viewbox="0 0 128 128"><path fill="#F0DB4F" d="M1.408 1.408h125.184v125.185H1.408z" /> <path fill="#323330" d="M116.347 96.736c-.917-5.711-4.641-10.508-15.672-14.981-3.832-1.761-8.104-3.022-9.377-5.926-.452-1.69-.512-2.642-.226-3.665.821-3.32 4.784-4.355 7.925-3.403 2.023.678 3.938 2.237 5.093 4.724 5.402-3.498 5.391-3.475 9.163-5.879-1.381-2.141-2.118-3.129-3.022-4.045-3.249-3.629-7.676-5.498-14.756-5.355l-3.688.477c-3.534.893-6.902 2.748-8.877 5.235-5.926 6.724-4.236 18.492 2.975 23.335 7.104 5.332 17.54 6.545 18.873 11.531 1.297 6.104-4.486 8.08-10.234 7.378-4.236-.881-6.592-3.034-9.139-6.949-4.688 2.713-4.688 2.713-9.508 5.485 1.143 2.499 2.344 3.63 4.26 5.795 9.068 9.198 31.76 8.746 35.83-5.176.165-.478 1.261-3.666.38-8.581zM69.462 58.943H57.753l-.048 30.272c0 6.438.333 12.34-.714 14.149-1.713 3.558-6.152 3.117-8.175 2.427-2.059-1.012-3.106-2.451-4.319-4.485-.333-.584-.583-1.036-.667-1.071l-9.52 5.83c1.583 3.249 3.915 6.069 6.902 7.901 4.462 2.678 10.459 3.499 16.731 2.059 4.082-1.189 7.604-3.652 9.448-7.401 2.666-4.915 2.094-10.864 2.07-17.444.06-10.735.001-21.468.001-32.237z" />
        </svg><span class="text-sm font-semibold text-gray-700">JavaScript</span>
-      </div>
-      <div class="flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-       <svg class="w-16 h-16 mb-3" viewbox="0 0 128 128"><path fill="#61DAFB" d="M64 0C28.7 0 0 28.7 0 64s28.7 64 64 64c11.2 0 21.7-2.9 30.8-7.9L48.4 55.3v36.6h-6.8V41.8h6.8l50.5 75.8C116.4 106.2 128 86.5 128 64c0-35.3-28.7-64-64-64zm22.1 84.6l-7.5-11.3V41.8h7.5v42.8z" />
-       </svg><span class="text-sm font-semibold text-gray-700">React</span>
-      </div>
-      <div class="flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-       <svg class="w-16 h-16 mb-3" viewbox="0 0 128 128"><path fill="#5FA04E" d="M64 0C28.7 0 0 28.7 0 64s28.7 64 64 64c35.3 0 64-28.7 64-64S99.3 0 64 0zm0 118c-29.8 0-54-24.2-54-54S34.2 10 64 10s54 24.2 54 54-24.2 54-54 54z" />
-       </svg><span class="text-sm font-semibold text-gray-700">Node.js</span>
-      </div>
-      <div class="flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-       <svg class="w-16 h-16 mb-3" viewbox="0 0 128 128"><path fill="#0080FF" d="M64 0C28.7 0 0 28.7 0 64s28.7 64 64 64c35.3 0 64-28.7 64-64S99.3 0 64 0z" />
-       </svg><span class="text-sm font-semibold text-gray-700">Flutter</span>
-      </div>
-     </div>
-    </div>
-   </div>
-  </section><!-- Portfolio/Projects Preview -->
-  <section class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #f0fdf4 0%, #dbeafe 100%);">
-   <div class="blob blob-2"></div>
-   <div class="w-full px-6 relative z-10">
-    <div class="max-w-7xl mx-auto">
-     <div class="text-center mb-16">
-      <h2 class="text-5xl md:text-6xl font-bold mb-4" style="background: linear-gradient(135deg, #10B981, #3B82F6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Featured Projects</h2>
-      <p class="text-xl text-gray-600">Showcasing our best work and innovations</p>
-     </div>
-     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"><!-- Project 1 -->
-      <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-       <div class="h-64 bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center">
-        <svg class="w-32 h-32 text-white opacity-50" fill="currentColor" viewbox="0 0 20 20"><path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
-        </svg>
-       </div>
-       <div class="p-6">
-        <h3 class="text-2xl font-bold text-gray-800 mb-2">E-Commerce Platform</h3>
-        <p class="text-gray-600 mb-4">A complete online shopping solution with payment integration</p>
-        <div class="flex gap-2"><span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">React</span> <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">Node.js</span>
-        </div>
-       </div>
-      </div><!-- Project 2 -->
-      <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-       <div class="h-64 bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center">
-        <svg class="w-32 h-32 text-white opacity-50" fill="currentColor" viewbox="0 0 20 20"><path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" /> <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
-        </svg>
-       </div>
-       <div class="p-6">
-        <h3 class="text-2xl font-bold text-gray-800 mb-2">Social Media App</h3>
-        <p class="text-gray-600 mb-4">Modern social networking platform with real-time chat</p>
-        <div class="flex gap-2"><span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">Flutter</span> <span class="px-3 py-1 bg-pink-100 text-pink-700 rounded-full text-sm">Firebase</span>
-        </div>
-       </div>
-      </div><!-- Project 3 -->
-      <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-       <div class="h-64 bg-gradient-to-br from-blue-400 to-cyan-500 flex items-center justify-center">
-        <svg class="w-32 h-32 text-white opacity-50" fill="currentColor" viewbox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" /> <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" />
-        </svg>
-       </div>
-       <div class="p-6">
-        <h3 class="text-2xl font-bold text-gray-800 mb-2">Healthcare Management</h3>
-        <p class="text-gray-600 mb-4">Digital health platform for patient and appointment management</p>
-        <div class="flex gap-2"><span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">Angular</span> <span class="px-3 py-1 bg-cyan-100 text-cyan-700 rounded-full text-sm">MongoDB</span>
-        </div>
-       </div>
-      </div>
-     </div>
-     <div class="text-center mt-12"><a href="projects.html" class="cta-button"><span>View All Projects</span></a>
-     </div>
-    </div>
-   </div>
-  </section><!-- Process Section -->
-  <section class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);">
-   <div class="w-full px-6 relative z-10">
-    <div class="max-w-7xl mx-auto">
-     <div class="text-center mb-16">
-      <h2 class="text-5xl md:text-6xl font-bold mb-4" style="background: linear-gradient(135deg, #10B981, #3B82F6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Our Development Process</h2>
-      <p class="text-xl text-gray-600">A systematic approach to deliver excellence</p>
-     </div>
-     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8"><!-- Step 1 -->
-      <div class="text-center">
-       <div class="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center text-white text-4xl font-bold shadow-lg">
-        1
-       </div>
-       <h3 class="text-2xl font-bold text-gray-800 mb-3">Discovery</h3>
-       <p class="text-gray-600">Understanding your business goals and requirements</p>
-      </div><!-- Step 2 -->
-      <div class="text-center">
-       <div class="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white text-4xl font-bold shadow-lg">
-        2
-       </div>
-       <h3 class="text-2xl font-bold text-gray-800 mb-3">Design</h3>
-       <p class="text-gray-600">Creating beautiful and functional user interfaces</p>
-      </div><!-- Step 3 -->
-      <div class="text-center">
-       <div class="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center text-white text-4xl font-bold shadow-lg">
-        3
-       </div>
-       <h3 class="text-2xl font-bold text-gray-800 mb-3">Development</h3>
-       <p class="text-gray-600">Building robust solutions with clean code</p>
-      </div><!-- Step 4 -->
-      <div class="text-center">
-       <div class="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-pink-400 to-red-500 flex items-center justify-center text-white text-4xl font-bold shadow-lg">
-        4
-       </div>
-       <h3 class="text-2xl font-bold text-gray-800 mb-3">Launch</h3>
-       <p class="text-gray-600">Deploying and supporting your success</p>
-      </div>
-     </div>
-    </div>
-   </div>
-  </section><!-- Why Choose Us Section -->
-  <section class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #dbeafe 0%, #ede9fe 100%);">
-   <div class="blob blob-1"></div>
-   <div class="blob blob-3"></div>
-   <div class="w-full px-6 relative z-10">
-    <div class="max-w-7xl mx-auto">
-     <div class="grid lg:grid-cols-2 gap-12 items-center">
-      <div>
-       <h2 class="text-5xl md:text-6xl font-bold mb-6" style="background: linear-gradient(135deg, #10B981, #3B82F6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Why Choose APAX?</h2>
-       <p class="text-xl text-gray-600 mb-8">We combine technical expertise with creative innovation to deliver outstanding results</p>
-       <div class="space-y-6">
-        <div class="flex items-start space-x-4">
-         <div class="w-12 h-12 rounded-full bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-white text-xl"></i>
-         </div>
-         <div>
-          <h4 class="text-xl font-bold text-gray-800 mb-2">Expert Team</h4>
-          <p class="text-gray-600">Skilled professionals with years of industry experience</p>
-         </div>
-        </div>
-        <div class="flex items-start space-x-4">
-         <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-white text-xl"></i>
-         </div>
-         <div>
-          <h4 class="text-xl font-bold text-gray-800 mb-2">Quality Assurance</h4>
-          <p class="text-gray-600">Rigorous testing ensures bug-free, reliable software</p>
-         </div>
-        </div>
-        <div class="flex items-start space-x-4">
-         <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-white text-xl"></i>
-         </div>
-         <div>
-          <h4 class="text-xl font-bold text-gray-800 mb-2">Timely Delivery</h4>
-          <p class="text-gray-600">We respect deadlines and deliver on schedule</p>
-         </div>
-        </div>
-        <div class="flex items-start space-x-4">
-         <div class="w-12 h-12 rounded-full bg-gradient-to-br from-pink-400 to-red-500 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-white text-xl"></i>
-         </div>
-         <div>
-          <h4 class="text-xl font-bold text-gray-800 mb-2">24/7 Support</h4>
-          <p class="text-gray-600">Round-the-clock assistance for your peace of mind</p>
-         </div>
-        </div>
-       </div>
-      </div>
-      <div class="relative">
-       <div class="bg-white rounded-3xl p-8 shadow-2xl">
-        <svg class="w-full h-96" viewbox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="400" fill="url(#paint0_linear)" /> <circle cx="200" cy="150" r="60" fill="#10B981" opacity="0.8" /> <circle cx="150" cy="250" r="50" fill="#3B82F6" opacity="0.8" /> <circle cx="250" cy="250" r="50" fill="#8B5CF6" opacity="0.8" /> <path d="M200 150 L150 250 L250 250 Z" stroke="#ffffff" stroke-width="3" fill="none" /> <defs>
-          <lineargradient id="paint0_linear" x1="0" y1="0" x2="400" y2="400" gradientunits="userSpaceOnUse">
-           <stop stop-color="#f0fdf4" />
-           <stop offset="1" stop-color="#dbeafe" />
-          </lineargradient>
-         </defs>
-        </svg>
-       </div>
-      </div>
-     </div>
-    </div>
-   </div>
-  </section><!-- Industries We Serve -->
-  <section class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);">
-   <div class="w-full px-6 relative z-10">
-    <div class="max-w-7xl mx-auto">
-     <div class="text-center mb-16">
-      <h2 class="text-5xl md:text-6xl font-bold mb-4" style="background: linear-gradient(135deg, #10B981, #3B82F6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Industries We Serve</h2>
-      <p class="text-xl text-gray-600">Delivering tailored solutions across various sectors</p>
-     </div>
-     <div class="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
-      <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 text-center">
-       <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center"><i class="fas fa-heartbeat text-white text-3xl"></i>
-       </div>
-       <h4 class="text-lg font-bold text-gray-800">Healthcare</h4>
-      </div>
-      <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 text-center">
-       <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center"><i class="fas fa-graduation-cap text-white text-3xl"></i>
-       </div>
-       <h4 class="text-lg font-bold text-gray-800">Education</h4>
-      </div>
-      <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 text-center">
-       <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center"><i class="fas fa-shopping-cart text-white text-3xl"></i>
-       </div>
-       <h4 class="text-lg font-bold text-gray-800">E-Commerce</h4>
-      </div>
-      <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 text-center">
-       <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-pink-400 to-red-500 flex items-center justify-center"><i class="fas fa-chart-line text-white text-3xl"></i>
-       </div>
-       <h4 class="text-lg font-bold text-gray-800">Finance</h4>
-      </div>
-      <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 text-center">
-       <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-red-400 to-orange-500 flex items-center justify-center"><i class="fas fa-hotel text-white text-3xl"></i>
-       </div>
-       <h4 class="text-lg font-bold text-gray-800">Hospitality</h4>
+      </div><!-- Angular -->
+      <div class="tech-logo flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+       <svg class="w-16 h-16 mb-3" viewbox="0 0 128 128"><path fill="#B52E31" d="M63.81 1.026L4.553 21.88l9.363 77.637 49.957 27.457 50.214-27.828 9.36-77.635L63.81 1.026z" /> <path fill="#E23237" d="M63.81 1.026v17.692l-.08 106.288v.03l.08-.03 50.214-27.828 9.36-77.635L63.81 1.026z" /> <path fill="#FFF" d="M63.81 23.093L26.728 87.883h13.883l7.463-18.633h30.736l7.465 18.633h13.882L63.81 23.093zm8.93 37.008H54.88l8.93-20.604 8.93 20.604z" />
+       </svg><span class="text-sm font-semibold text-gray-700">Angular</span>
+      </div><!-- Django -->
+      <div class="tech-logo flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+       <svg class="w-16 h-16 mb-3" viewbox="0 0 128 128"><path fill="#092E20" d="M59.448 0h20.93v96.88c-10.737 2.04-18.62 2.855-27.181 2.855-25.551 0-38.87-11.551-38.87-33.705 0-21.338 14.135-35.2 36.015-35.2 3.398 0 5.98.272 9.106 1.087zm0 48.765c-2.446-.815-4.485-1.086-7.067-1.086-10.6 0-16.717 6.523-16.717 17.939 0 11.145 5.845 17.26 16.582 17.26 2.309 0 4.212-.136 7.202-.542z" /> <path fill="#092E20" d="M113.672 32.321V80.84c0 16.717-1.224 24.735-4.893 31.666-3.398 6.661-7.883 10.873-17.124 15.494l-19.435-9.241c9.242-4.35 13.726-8.153 16.58-14 2.99-5.979 3.943-12.91 3.943-31.122V32.321zM92.742.111h20.93v21.474h-20.93z" />
+       </svg><span class="text-sm font-semibold text-gray-700">Django</span>
+      </div><!-- .NET -->
+      <div class="tech-logo flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+       <svg class="w-16 h-16 mb-3" viewbox="0 0 128 128"><path fill="#1384C8" d="M60.736 38.734L43.296 82h-9.532l-17.428-43.266h8.22l13.128 34.789 13.344-34.789z" /> <path fill="#1384C8" d="M65.466 82V38.734h28.813v6.672h-21.14v11.812h20.043v6.672H73.139v11.437h21.14V82z" /> <circle fill="#1384C8" cx="13.906" cy="75.328" r="5.344" /> <path fill="#1384C8" d="M108.574 39.734v42.266h-7.328V58.918l-18.5 23.082h-1.219L62.991 58.891V82h-7.328V39.734h6.054l19.582 24.544 19.664-24.544z" />
+       </svg><span class="text-sm font-semibold text-gray-700">.NET</span>
       </div>
      </div>
     </div>
@@ -995,9 +759,9 @@
        <h4 class="text-lg font-bold text-gray-800 mb-4">Services</h4>
        <ul class="space-y-2">
         <li><a href="services.html" class="text-gray-600 hover:text-green-500 transition-colors">Web Development</a></li>
-        <li><a href="services.html" class="text-gray-600 hover:text-green-500 transition-colors">Mobile Apps</a></li>
-        <li><a href="services.html" class="text-gray-600 hover:text-green-500 transition-colors">UI/UX Design</a></li>
-        <li><a href="services.html" class="text-gray-600 hover:text-green-500 transition-colors">Cloud Solutions</a></li>
+        <li><a href="services.html" class="text-gray-600 hover:text-green-500 transition-colors">ERP Software</a></li>
+        <li><a href="services.html" class="text-gray-600 hover:text-green-500 transition-colors">Business Management</a></li>
+        <li><a href="services.html" class="text-gray-600 hover:text-green-500 transition-colors">Graphic Designing</a></li>
        </ul>
       </div>
       <div>
@@ -1028,20 +792,14 @@
             cta_button: "Get Started"
         };
         
-        // Navbar show/hide on scroll
-        let lastScroll = 0;
-        const navbar = document.getElementById('navbar');
-        
+        // Navbar scroll effect - transparent at top, solid on scroll
         window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll > 100) {
-                navbar.classList.add('visible');
+            const navbar = document.getElementById('navbar');
+            if (window.pageYOffset > 50) {
+                navbar.classList.add('scrolled');
             } else {
-                navbar.classList.remove('visible');
+                navbar.classList.remove('scrolled');
             }
-            
-            lastScroll = currentScroll;
         });
         
         // Mobile menu
@@ -1077,7 +835,7 @@
         
         // Testimonial Carousel - Auto rotate
         let currentTestimonial = 0;
-        const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+        const testimonialSlides = document.querySelectorAll('.testimonial-transparent');
         
         function showTestimonial(index) {
             testimonialSlides.forEach((slide, i) => {
@@ -1096,49 +854,36 @@
         // Auto rotate every 5 seconds
         setInterval(nextTestimonial, 5000);
         
-        // Team Carousel
-        let currentTeamIndex = 0;
-        const teamTrack = document.getElementById('team-track');
-        const teamMembers = document.querySelectorAll('.team-member');
-        const teamPrevBtn = document.getElementById('team-prev');
-        const teamNextBtn = document.getElementById('team-next');
-        
-        function getVisibleMembers() {
-            if (window.innerWidth >= 1024) return 3;
-            if (window.innerWidth >= 640) return 2;
-            return 1;
+        // Counter Animation with Intersection Observer
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    element.textContent = target + '+';
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
         }
         
-        function updateTeamCarousel() {
-            const visibleMembers = getVisibleMembers();
-            const maxIndex = Math.max(0, teamMembers.length - visibleMembers);
-            currentTeamIndex = Math.min(currentTeamIndex, maxIndex);
-            
-            const memberWidth = teamMembers[0].offsetWidth;
-            const gap = 32; // 2rem gap
-            const offset = -(currentTeamIndex * (memberWidth + gap));
-            
-            teamTrack.style.transform = `translateX(${offset}px)`;
-        }
+        // Intersection Observer for counters
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target.textContent === '0') {
+                    animateCounter(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
         
-        teamPrevBtn.addEventListener('click', () => {
-            if (currentTeamIndex > 0) {
-                currentTeamIndex--;
-                updateTeamCarousel();
-            }
+        document.querySelectorAll('.counter').forEach(counter => {
+            counterObserver.observe(counter);
         });
-        
-        teamNextBtn.addEventListener('click', () => {
-            const visibleMembers = getVisibleMembers();
-            const maxIndex = teamMembers.length - visibleMembers;
-            if (currentTeamIndex < maxIndex) {
-                currentTeamIndex++;
-                updateTeamCarousel();
-            }
-        });
-        
-        window.addEventListener('resize', updateTeamCarousel);
-        updateTeamCarousel();
         
         // Element SDK Config
         async function onConfigChange(config) {
@@ -1185,5 +930,5 @@
             });
         }
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b5a5c39e56634e9',t:'MTc2NzAyMjQ1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b60b97d64cc90a4',t:'MTc2NzA4OTE4Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
