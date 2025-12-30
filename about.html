@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About APAX Software Company - Learn about our mission, vision, team, and commitment to excellence">
+  <title>About Us - APAX Software Company</title><!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700;800&amp;display=swap" rel="stylesheet"><!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script><!-- Element SDK -->
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-green: #10B981;
+            --secondary-blue: #3B82F6;
+            --accent-purple: #8B5CF6;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Animated Background Blobs */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+            animation: blobFloat 20s ease-in-out infinite;
+        }
+        
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-blue));
+            top: -200px;
+            left: -200px;
+            animation-delay: 0s;
+        }
+        
+        .blob-2 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, var(--secondary-blue), var(--accent-purple));
+            top: 50%;
+            right: -150px;
+            animation-delay: 5s;
+        }
+        
+        .blob-3 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--primary-green));
+            bottom: -100px;
+            left: 30%;
+            animation-delay: 10s;
+        }
+        
+        @keyframes blobFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, -50px) scale(1.1); }
+            50% { transform: translate(-30px, 30px) scale(0.9); }
+            75% { transform: translate(30px, 50px) scale(1.05); }
+        }
+        
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+        
+        .navbar.scrolled {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.95), rgba(59, 130, 246, 0.95));
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Timeline Styles */
+        .timeline-item {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .timeline-item:nth-child(1) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.6s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.8s; }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Value Card Hover Effect */
+        .value-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 2rem;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(16, 185, 129, 0.1);
+        }
+        
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
+            transition: left 0.7s ease;
+        }
+        
+        .value-card:hover::before {
+            left: 100%;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(16, 185, 129, 0.3);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+        
+        /* Team Member Styles - Transparent */
+        .team-member-transparent {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 2rem;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .team-member-transparent:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.2);
+        }
+        
+        .team-avatar-wrapper {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .blob-frame {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-blue));
+            animation: blobMorph 8s ease-in-out infinite;
+        }
+        
+        @keyframes blobMorph {
+            0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+            50% { border-radius: 50% 60% 30% 60% / 30% 60% 70% 40%; }
+            75% { border-radius: 60% 40% 60% 40% / 70% 30% 50% 60%; }
+        }
+        
+        .team-member-transparent:hover .blob-frame {
+            animation: blobMorphFast 2s ease-in-out infinite;
+        }
+        
+        @keyframes blobMorphFast {
+            0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: rotate(0deg); }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; transform: rotate(180deg); }
+        }
+        
+        .team-avatar {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary-green);
+            margin: 10px auto;
+            z-index: 2;
+        }
+        
+        /* Counter Animation */
+        .counter {
+            font-size: 4rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1;
+        }
+        
+        /* Scroll Animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        /* Icon Wrapper */
+        .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            animation: iconFloat 4s ease-in-out infinite;
+        }
+        
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .value-card:hover .icon-wrapper {
+            animation: iconRotate 0.8s ease;
+        }
+        
+        @keyframes iconRotate {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full"><!-- Navbar -->
+  <nav class="navbar" id="navbar">
+   <div class="w-full px-6 py-4">
+    <div class="flex items-center justify-between max-w-7xl mx-auto">
+     <div class="flex items-center space-x-3">
+      <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center"><span class="font-bold text-xl" style="background: linear-gradient(135deg, #10B981, #3B82F6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">A</span>
+      </div><span class="text-white text-2xl font-bold">APAX Software</span>
+     </div>
+     <div class="hidden md:flex items-center space-x-8"><a href="index.html" class="text-white hover:text-yellow-300 transition-colors duration-300 font-medium">Home</a> <a href="about.html" class="text-white hover:text-yellow-300 transition-colors duration-300 font-medium">About</a> <a href="services.html" class="text-white hover:text-yellow-300 transition-colors duration-300 font-medium">Services</a> <a href="projects.html" class="text-white hover:text-yellow-300 transition-colors duration-300 font-medium">Projects</a> <a href="contact.html" class="text-white hover:text-yellow-300 transition-colors duration-300 font-medium">Contact</a> <a href="contact.html"><button class="bg-white text-green-600 px-6 py-2 rounded-full transition-all duration-300 font-semibold hover:shadow-lg">Get Started</button></a>
+     </div><button class="md:hidden text-white text-2xl" id="mobile-menu-btn" aria-label="Toggle menu"> <i class="fas fa-bars"></i> </button>
+    </div>
+   </div><!-- Mobile Menu -->
+   <div class="mobile-menu fixed top-0 right-0 w-full h-full bg-gradient-to-br from-green-500 to-blue-500 md:hidden z-50" id="mobile-menu">
+    <div class="flex flex-col h-full">
+     <div class="flex justify-between items-center p-6 border-b border-white border-opacity-20"><span class="text-white text-xl font-bold">Menu</span> <button class="text-white text-2xl" id="mobile-menu-close" aria-label="Close menu"> <i class="fas fa-times"></i> </button>
+     </div>
+     <div class="flex flex-col space-y-6 p-6"><a href="index.html" class="text-white hover:text-yellow-300 text-lg font-medium">Home</a> <a href="about.html" class="text-white hover:text-yellow-300 text-lg font-medium">About</a> <a href="services.html" class="text-white hover:text-yellow-300 text-lg font-medium">Services</a> <a href="projects.html" class="text-white hover:text-yellow-300 text-lg font-medium">Projects</a> <a href="contact.html" class="text-white hover:text-yellow-300 text-lg font-medium">Contact</a>
+     </div>
+    </div>
+   </div>
+  </nav><!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden" style="background: linear-gradient(135deg, #f0fdf4 0%, #dbeafe 50%, #ede9fe 100%);">
+   <div class="blob blob-1"></div>
+   <div class="blob blob-2"></div>
+   <div class="blob blob-3"></div>
+   <div class="w-full px-6 relative z-10 pt-20">
+    <div class="max-w-7xl mx-auto text-center">
+     <h1 class="text-6xl md:text-8xl font-extrabold mb-6" style="background: linear-gradient(135deg, #10B981, #3B82F6, #8B5CF6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" id="about-title">About APAX Software</h1>
+     <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-8" id="about-subtitle">Building Tomorrow's Technology Today</h2>
+     <p class="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto mb-12">We are a passionate team of innovators, developers, and designers committed to transforming businesses through cutting-edge software solutions. Since our inception, we've been at the forefront of digital transformation, helping companies achieve their goals with technology that truly works.</p>
+    </div>
+   </div>
+  </section><!-- Mission & Vision Section -->
+  <section class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);">
+   <div class="w-full px-6 relative z-10">
+    <div class="max-w-7xl mx-auto">
+     <div class="grid md:grid-cols-2 gap-12"><!-- Mission -->
+      <div class="value-card scroll-reveal">
+       <div class="icon-wrapper"><i class="fas fa-bullseye text-white text-4xl"></i>
+       </div>
+       <h3 class="text-4xl font-bold text-gray-800 mb-4 text-center" id="mission-title">Our Mission</h3>
+       <p class="text-xl text-gray-600 text-center leading-relaxed" id="mission-text">To empower businesses with innovative software solutions that drive growth, efficiency, and success. We believe in creating technology that makes a real difference in people's lives and transforms the way businesses operate.</p>
+      </div><!-- Vision -->
+      <div class="value-card scroll-reveal">
+       <div class="icon-wrapper"><i class="fas fa-eye text-white text-4xl"></i>
+       </div>
+       <h3 class="text-4xl font-bold text-gray-800 mb-4 text-center" id="vision-title">Our Vision</h3>
+       <p class="text-xl text-gray-600 text-center leading-relaxed" id="vision-text">To be the leading software company in digital transformation, recognized globally for our innovation, quality, and commitment to excellence. We envision a future where technology seamlessly integrates with business to create unlimited possibilities.</p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Company Stats -->
+  <section class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #10B981 0%, #3B82F6 100%);">
+   <div class="w-full px-6 relative z-10">
+    <div class="max-w-7xl mx-auto">
+     <h2 class="text-5xl md:text-6xl font-bold text-white text-center mb-16">Our Achievements</h2>
+     <div class="grid md:grid-cols-4 gap-8 text-center">
+      <div class="transform hover:scale-110 transition-all duration-300">
+       <div class="counter mb-2" data-target="500">
+        0
+       </div>
+       <div class="text-xl text-white text-opacity-90">
+        Projects Completed
+       </div>
+      </div>
+      <div class="transform hover:scale-110 transition-all duration-300">
+       <div class="counter mb-2" data-target="250">
+        0
+       </div>
+       <div class="text-xl text-white text-opacity-90">
+        Happy Clients
+       </div>
+      </div>
+      <div class="transform hover:scale-110 transition-all duration-300">
+       <div class="counter mb-2" data-target="10">
+        0
+       </div>
+       <div class="text-xl text-white text-opacity-90">
+        Years Experience
+       </div>
+      </div>
+      <div class="transform hover:scale-110 transition-all duration-300">
+       <div class="counter mb-2" data-target="50">
+        0
+       </div>
+       <div class="text-xl text-white text-opacity-90">
+        Team Members
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Our Values -->
+  <section class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #f0fdf4 0%, #dbeafe 100%);">
+   <div class="blob blob-1"></div>
+   <div class="blob blob-3"></div>
+   <div class="w-full px-6 relative z-10">
+    <div class="max-w-7xl mx-auto">
+     <div class="text-center mb-16">
+      <h2 class="text-5xl md:text-6xl font-bold mb-4" style="background: linear-gradient(135deg, #10B981, #3B82F6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Our Core Values</h2>
+      <p class="text-xl text-gray-600">The principles that guide everything we do</p>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="value-card scroll-reveal">
+       <div class="icon-wrapper"><i class="fas fa-lightbulb text-white text-3xl"></i>
+       </div>
+       <h4 class="text-2xl font-bold text-gray-800 mb-3 text-center">Innovation</h4>
+       <p class="text-gray-600 text-center">Constantly pushing boundaries to create cutting-edge solutions</p>
+      </div>
+      <div class="value-card scroll-reveal">
+       <div class="icon-wrapper"><i class="fas fa-award text-white text-3xl"></i>
+       </div>
+       <h4 class="text-2xl font-bold text-gray-800 mb-3 text-center">Excellence</h4>
+       <p class="text-gray-600 text-center">Delivering the highest quality in everything we create</p>
+      </div>
+      <div class="value-card scroll-reveal">
+       <div class="icon-wrapper"><i class="fas fa-handshake text-white text-3xl"></i>
+       </div>
+       <h4 class="text-2xl font-bold text-gray-800 mb-3 text-center">Integrity</h4>
+       <p class="text-gray-600 text-center">Building trust through honesty and transparency</p>
+      </div>
+      <div class="value-card scroll-reveal">
+       <div class="icon-wrapper"><i class="fas fa-users text-white text-3xl"></i>
+       </div>
+       <h4 class="text-2xl font-bold text-gray-800 mb-3 text-center">Collaboration</h4>
+       <p class="text-gray-600 text-center">Working together to achieve extraordinary results</p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Our Story Timeline -->
+  <section class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);">
+   <div class="w-full px-6 relative z-10">
+    <div class="max-w-5xl mx-auto">
+     <div class="text-center mb-16">
+      <h2 class="text-5xl md:text-6xl font-bold mb-4" style="background: linear-gradient(135deg, #10B981, #3B82F6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Our Journey</h2>
+      <p class="text-xl text-gray-600">A timeline of growth and innovation</p>
+     </div>
+     <div class="relative"><!-- Timeline Line -->
+      <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-green-400 to-blue-500 hidden md:block"></div><!-- Timeline Items -->
+      <div class="space-y-12"><!-- 2014 -->
+       <div class="timeline-item relative">
+        <div class="md:flex items-center">
+         <div class="md:w-1/2 md:pr-12 text-right">
+          <div class="bg-white rounded-2xl p-6 shadow-lg inline-block">
+           <h4 class="text-3xl font-bold text-gray-800 mb-2">2014</h4>
+           <h5 class="text-xl font-semibold text-green-600 mb-3">The Beginning</h5>
+           <p class="text-gray-600">APAX Software was founded with a vision to transform businesses through technology</p>
+          </div>
+         </div>
+         <div class="hidden md:block w-8 h-8 rounded-full bg-gradient-to-br from-green-400 to-blue-500 absolute left-1/2 transform -translate-x-1/2 border-4 border-white"></div>
+         <div class="md:w-1/2"></div>
+        </div>
+       </div><!-- 2016 -->
+       <div class="timeline-item relative">
+        <div class="md:flex items-center">
+         <div class="md:w-1/2"></div>
+         <div class="hidden md:block w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 absolute left-1/2 transform -translate-x-1/2 border-4 border-white"></div>
+         <div class="md:w-1/2 md:pl-12">
+          <div class="bg-white rounded-2xl p-6 shadow-lg inline-block">
+           <h4 class="text-3xl font-bold text-gray-800 mb-2">2016</h4>
+           <h5 class="text-xl font-semibold text-blue-600 mb-3">Major Expansion</h5>
+           <p class="text-gray-600">Expanded our services to include mobile app development and cloud solutions</p>
+          </div>
+         </div>
+        </div>
+       </div><!-- 2019 -->
+       <div class="timeline-item relative">
+        <div class="md:flex items-center">
+         <div class="md:w-1/2 md:pr-12 text-right">
+          <div class="bg-white rounded-2xl p-6 shadow-lg inline-block">
+           <h4 class="text-3xl font-bold text-gray-800 mb-2">2019</h4>
+           <h5 class="text-xl font-semibold text-purple-600 mb-3">100+ Projects</h5>
+           <p class="text-gray-600">Reached a milestone of 100+ successful projects and 50+ satisfied clients</p>
+          </div>
+         </div>
+         <div class="hidden md:block w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 absolute left-1/2 transform -translate-x-1/2 border-4 border-white"></div>
+         <div class="md:w-1/2"></div>
+        </div>
+       </div><!-- 2024 -->
+       <div class="timeline-item relative">
+        <div class="md:flex items-center">
+         <div class="md:w-1/2"></div>
+         <div class="hidden md:block w-8 h-8 rounded-full bg-gradient-to-br from-pink-400 to-red-500 absolute left-1/2 transform -translate-x-1/2 border-4 border-white"></div>
+         <div class="md:w-1/2 md:pl-12">
+          <div class="bg-white rounded-2xl p-6 shadow-lg inline-block">
+           <h4 class="text-3xl font-bold text-gray-800 mb-2">2024</h4>
+           <h5 class="text-xl font-semibold text-red-600 mb-3">Industry Leader</h5>
+           <p class="text-gray-600">Recognized as a leading software company with 500+ projects and 250+ clients worldwide</p>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Team Section -->
+  <section class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #10B981 0%, #3B82F6 50%, #8B5CF6 100%);">
+   <div class="w-full px-6 relative z-10">
+    <div class="max-w-7xl mx-auto">
+     <div class="text-center mb-16">
+      <h2 class="text-5xl md:text-6xl font-bold mb-4 text-white">Meet Our Leadership</h2>
+      <p class="text-xl text-white text-opacity-90">The brilliant minds driving our success</p>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8"><!-- Team Member 1 -->
+      <div class="team-member-transparent scroll-reveal">
+       <div class="team-avatar-wrapper">
+        <div class="blob-frame"></div>
+        <div class="team-avatar"><i class="fas fa-user"></i>
+        </div>
+       </div>
+       <h3 class="text-2xl font-bold text-white mb-2">Ahmed Hassan</h3>
+       <p class="text-white text-opacity-90 font-semibold text-lg mb-3">CEO &amp; Founder</p>
+       <p class="text-white text-opacity-75 text-sm">Visionary leader with 15+ years in software development</p>
+      </div><!-- Team Member 2 -->
+      <div class="team-member-transparent scroll-reveal">
+       <div class="team-avatar-wrapper">
+        <div class="blob-frame"></div>
+        <div class="team-avatar"><i class="fas fa-user"></i>
+        </div>
+       </div>
+       <h3 class="text-2xl font-bold text-white mb-2">Sara Khan</h3>
+       <p class="text-white text-opacity-90 font-semibold text-lg mb-3">CTO</p>
+       <p class="text-white text-opacity-75 text-sm">Tech expert specializing in cloud architecture and AI</p>
+      </div><!-- Team Member 3 -->
+      <div class="team-member-transparent scroll-reveal">
+       <div class="team-avatar-wrapper">
+        <div class="blob-frame"></div>
+        <div class="team-avatar"><i class="fas fa-user"></i>
+        </div>
+       </div>
+       <h3 class="text-2xl font-bold text-white mb-2">Ali Raza</h3>
+       <p class="text-white text-opacity-90 font-semibold text-lg mb-3">Creative Director</p>
+       <p class="text-white text-opacity-75 text-sm">Award-winning designer with a passion for user experience</p>
+      </div><!-- Team Member 4 -->
+      <div class="team-member-transparent scroll-reveal">
+       <div class="team-avatar-wrapper">
+        <div class="blob-frame"></div>
+        <div class="team-avatar"><i class="fas fa-user"></i>
+        </div>
+       </div>
+       <h3 class="text-2xl font-bold text-white mb-2">Fatima Malik</h3>
+       <p class="text-white text-opacity-90 font-semibold text-lg mb-3">Operations Manager</p>
+       <p class="text-white text-opacity-75 text-sm">Expert in project delivery and client satisfaction</p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- CTA Section -->
+  <section class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #dbeafe 0%, #ede9fe 100%);">
+   <div class="blob blob-1"></div>
+   <div class="blob blob-3"></div>
+   <div class="w-full px-6 relative z-10">
+    <div class="max-w-4xl mx-auto text-center">
+     <h2 class="text-5xl md:text-6xl font-bold mb-6" style="background: linear-gradient(135deg, #10B981, #3B82F6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Join Us on Our Journey</h2>
+     <p class="text-xl text-gray-600 mb-12">Be part of our success story. Let's create something amazing together.</p>
+     <div class="flex flex-wrap justify-center gap-6"><a href="contact.html" class="bg-gradient-to-r from-green-500 to-blue-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105"> Contact Us </a> <a href="careers.html" class="bg-white text-green-600 px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-2 border-green-500"> Join Our Team </a>
+     </div>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer class="bg-white py-12 border-t border-gray-200">
+   <div class="w-full px-6">
+    <div class="max-w-7xl mx-auto">
+     <div class="grid md:grid-cols-4 gap-8">
+      <div>
+       <div class="flex items-center space-x-3 mb-4">
+        <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #10B981, #3B82F6);"><span class="text-white font-bold text-xl">A</span>
+        </div><span class="text-xl font-bold text-gray-800">APAX Software</span>
+       </div>
+       <p class="text-gray-600">Transforming ideas into digital reality</p>
+      </div>
+      <div>
+       <h4 class="text-lg font-bold text-gray-800 mb-4">Quick Links</h4>
+       <ul class="space-y-2">
+        <li><a href="index.html" class="text-gray-600 hover:text-green-500 transition-colors">Home</a></li>
+        <li><a href="about.html" class="text-gray-600 hover:text-green-500 transition-colors">About</a></li>
+        <li><a href="services.html" class="text-gray-600 hover:text-green-500 transition-colors">Services</a></li>
+        <li><a href="projects.html" class="text-gray-600 hover:text-green-500 transition-colors">Projects</a></li>
+       </ul>
+      </div>
+      <div>
+       <h4 class="text-lg font-bold text-gray-800 mb-4">Services</h4>
+       <ul class="space-y-2">
+        <li><a href="services.html" class="text-gray-600 hover:text-green-500 transition-colors">Web Development</a></li>
+        <li><a href="services.html" class="text-gray-600 hover:text-green-500 transition-colors">Mobile Apps</a></li>
+        <li><a href="services.html" class="text-gray-600 hover:text-green-500 transition-colors">UI/UX Design</a></li>
+        <li><a href="services.html" class="text-gray-600 hover:text-green-500 transition-colors">Cloud Solutions</a></li>
+       </ul>
+      </div>
+      <div>
+       <h4 class="text-lg font-bold text-gray-800 mb-4">Contact</h4>
+       <ul class="space-y-2">
+        <li class="flex items-center space-x-2"><i class="fas fa-envelope text-green-500"></i> <span class="text-gray-600 text-sm">apaxpos@gmail.com</span></li>
+        <li class="flex items-center space-x-2"><i class="fas fa-phone text-green-500"></i> <span class="text-gray-600 text-sm">0327-7003331</span></li>
+       </ul>
+      </div>
+     </div>
+     <div class="border-t border-gray-200 mt-8 pt-8 text-center">
+      <p class="text-gray-600">© 2024 APAX Software Company. All rights reserved.</p>
+     </div>
+    </div>
+   </div>
+  </footer>
+  <script>
+        const defaultConfig = {
+            about_title: "About APAX Software",
+            about_subtitle: "Building Tomorrow's Technology Today",
+            mission_title: "Our Mission",
+            mission_text: "To empower businesses with innovative software solutions that drive growth, efficiency, and success. We believe in creating technology that makes a real difference in people's lives and transforms the way businesses operate.",
+            vision_title: "Our Vision",
+            vision_text: "To be the leading software company in digital transformation, recognized globally for our innovation, quality, and commitment to excellence. We envision a future where technology seamlessly integrates with business to create unlimited possibilities."
+        };
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.pageYOffset > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+        
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+        
+        // Counter Animation
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    element.textContent = target + '+';
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+        
+        // Intersection Observer for counters
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target.textContent === '0') {
+                    animateCounter(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        document.querySelectorAll('.counter').forEach(counter => {
+            counterObserver.observe(counter);
+        });
+        
+        // Scroll reveal animation
+        const scrollRevealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.scroll-reveal').forEach(element => {
+            scrollRevealObserver.observe(element);
+        });
+        
+        // Element SDK Config
+        async function onConfigChange(config) {
+            const mergedConfig = { ...defaultConfig, ...config };
+            
+            const updates = [
+                { id: 'about-title', value: mergedConfig.about_title },
+                { id: 'about-subtitle', value: mergedConfig.about_subtitle },
+                { id: 'mission-title', value: mergedConfig.mission_title },
+                { id: 'mission-text', value: mergedConfig.mission_text },
+                { id: 'vision-title', value: mergedConfig.vision_title },
+                { id: 'vision-text', value: mergedConfig.vision_text }
+            ];
+            
+            updates.forEach(({ id, value }) => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = value;
+            });
+        }
+        
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig,
+                onConfigChange,
+                mapToCapabilities: (config) => ({
+                    recolorables: [],
+                    borderables: [],
+                    fontEditable: undefined,
+                    fontSizeable: undefined
+                }),
+                mapToEditPanelValues: (config) => new Map([
+                    ["about_title", config.about_title || defaultConfig.about_title],
+                    ["about_subtitle", config.about_subtitle || defaultConfig.about_subtitle],
+                    ["mission_title", config.mission_title || defaultConfig.mission_title],
+                    ["mission_text", config.mission_text || defaultConfig.mission_text],
+                    ["vision_title", config.vision_title || defaultConfig.vision_title],
+                    ["vision_text", config.vision_text || defaultConfig.vision_text]
+                ])
+            });
+        }
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b60b106f0cf34e9',t:'MTc2NzA4ODg0MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
